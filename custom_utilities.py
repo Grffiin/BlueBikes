@@ -69,7 +69,7 @@ def hour_of_day(row):
 # Loads this precomputed extracted features dataset
 def load_popular_stations_extracted_data(demand_cutoff):
 	# Path to the extracted features dataset
-	extracted_path = "/content/drive/My Drive/DS 3000 Final Project/CSVs/hourly.extracted_features.final.csv"
+	extracted_path = "https://media.githubusercontent.com/media/pablokvitca/ds3000-project-data/master/hourly.extracted_features.final.csv"
 	dtypes_dict = { 
 	    # defaults for: "time_step_start", "time_step_end", "station", 
 	    #               "latitude", "longitude", "municipality",
