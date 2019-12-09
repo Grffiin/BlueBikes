@@ -97,3 +97,13 @@ def load_popular_stations_extracted_data(demand_cutoff):
 def get_data_in_range(data, start, end, colname):
     mask = (data[colname] > start) & (data[colname] <= end)
     return data.loc[mask]
+
+# Recovers the category names after one hot encoding
+def recover_cat_names(categories, colnames):
+    colnames = colnames.tolist()
+    for i in range(0, len(categories)):
+        real_cat_name = categories[i]
+        gen_cat_name = f"x{i}"
+        for j in range(0, len(colnames)):
+            colnames[j] = colnames[j].replace(gen_cat_name, real_cat_name)
+    return colnames
