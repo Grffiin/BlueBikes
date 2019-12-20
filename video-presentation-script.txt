@@ -1,0 +1,119 @@
+I'm Griffin and these are Hongyu and Pablo with and we are gonna be presenting our Data Science project on BLUE Bikes
+
+
+
+-
+
+
+BLUE Bikes are a bike-sharing program implement by the city of Boston in 2011, and it provides an eco-friendly and healthy way to traverse the city, and it has become popular among Bostonians.
+
+The goal of our project is to predict demand of bikes from a station using historical system trip data and weather. We define demand as bikes leaving a station on a given hour.
+
+
+`
+
+
+Our dataset consists of the BlueBikes system historical trip data, each row is one trip, and the weather data was obtained from the NOAA.
+
+
+
+
+For preprocessing we broke down the BlueBikes CSV into chunks by time, of monthly, weekly, daily, and hourly length. We used these for analysis and the hour data for the predictor model.
+
+
+
+
+Our next step was feature enginerring, were we processed the time-stamp and station feature labels into data that our Machine Learing algorithms can understand. 
+
+
+
+
+
+During preprocessing we ended up with a huge amount of data, nearing 10 million entries (each with 23 columns). Given the long computation times, we decided to narrow down our dataset to the most popular stations. The cutoff threshold was stations with demand over 1 standard devation from the mean.
+
+
+
+
+
+
+Following our feature engineering, we used One-Hot encoding on the categorical features. This increased our columns from 23 to 99, allowing us to input this data into the regression algorithms.
+
+
+
+
+
+
+Moving on to data visualization. Looking at the first chart, we can see the trend that demand is higher during the Summer months (June, July) and lower in the Winter. We hypothesize that demand depends on season strongly.
+
+
+
+
+
+Next, we analysed the geo-location of stations and its effect on demand using this plot. We realize that the location had no real effect on demand for bikes. We believe that the relative distance to Boston landmarks and important locations would be a better predictor.
+
+
+
+
+
+Next we analyzed temperature, precipitation and snowiness in relation to demand. As you can see on the charts, there is a strong correlation between temperature and trips leaving a station. 
+
+Precipitation (represented by the blue and red colored marks) causes a drop in demand when precent.
+
+
+
+
+
+Here we can see that Snow has a similar effect as rain, but is only present when the temperatures are already low.
+
+
+
+
+Next we are analysis the variable correlation graph. This shows the largest predictors for demand (trips from a station) are measures of temperature, late nights and Winter.
+
+We expected the main predictors for the models to be based mainly on temperature and time of day.
+
+
+
+
+
+Next, we trained our models. We used two separate strategies for model building. One where we build one model for all the selected stations, and one where we built a separate model per station. We expected the demand patterns for each station to be different, so we tried to capture the nuances of this.
+
+To each version we applied a suite of regressors and tested the best performing ones.
+
+
+
+
+
+The first regressions we applied were linear methods: Linear Regressiona and Ridge Regression
+
+Then we tried is basic Decision Trees and a Random Forest.
+
+
+
+
+
+The last set we applied used advanced tree methods: Light Gradient Boosting and Extreme Grading Boosting
+
+
+
+
+
+Looking at the results for our model the linear regressions did poorly overall, with maximum R-squared for testing 0.365. The decisions trees did better with a score of .634, but were clearly overfitting with near perfect scores on the training sets.
+
+The best performing algorithms were the Gradient Boosting algorithms, with a maximum score of .695 from Extreme Gradient Boosting.
+
+
+
+
+
+We tuned our best algorithm, XGBoost, trying to reduce some of the overfitting we saw on the original model. This caused an improvement of .002.
+
+
+Running this tuned algorythm of a hold out set of 2019 data, we saw an R-squared score of 0.486, probably due to variations in demand each year.
+
+
+
+
+
+
+In conclusion our model was able to predict demand for Blue Bikes with a fairly good accuracy, but was less powerful for predicting future demand. Future work could looking into more data, techniques, and optimizations, to improve on this. 
